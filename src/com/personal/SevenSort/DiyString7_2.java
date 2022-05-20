@@ -1,38 +1,32 @@
-package com.sj.study.programers.SevenSort;
+package programers.SevenSort;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Arrays;
 
 public class DiyString7_2 {
-//    ["sun", "bed", "car"]		1	  ["car", "bed", "sun"]
+    //    ["sun", "bed", "car"]		1	  ["car", "bed", "sun"]
 //    ["abce", "abcd", "cdx"]	2	  ["abcd", "abce", "cdx"]
-    public String[] solution(String[] sarr, int num){
-        String[] ssarr = new String[10];
-        List<Character> list = new ArrayList<>();
-        for(String s : sarr ){
-            list.add(s.charAt(num));
-        }
-        // 버블 정렬
-        char temp = 'a';
-        System.out.println(list);
-        for (int i =0; i < list.size(); i++){
-            for(int j = i + 1; j < list.size(); j++){
-                if( list.get(i) > list.get(j)){
-                    temp = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, temp);
-                }
-            }
-        }
-        System.out.println(list);
+    public String[] solution(String[] sarr, int num) {
+        Arrays.sort(sarr, (s1, s2) -> {
+            if(s1.charAt(num) == s2.charAt(num)) return s1.compareTo(s2);
+            return s1.charAt(num) - s2.charAt(num);
+        });
 
-
-
-
-
-        return ssarr;
-
+        return sarr;
     }
 }
+
+/* 기존 제출한것
+*   String[] answer = new String[sarr.length];
+        List<String> list = new ArrayList<>();
+
+        for (int i = 0; i < sarr.length; i++) {
+            list.add("" + sarr[i].charAt(num) + sarr[i]);
+        }
+        Collections.sort(list);
+
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i).substring(1, list.get(i).length());
+        }
+
+        return answer;
+* */
