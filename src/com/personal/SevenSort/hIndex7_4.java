@@ -23,9 +23,9 @@ public class hIndex7_4 {
         for (int i = 0; i < citations.length; i++) {
             h = citations.length -i;
             if (h <= citations[i]){
-                 break;
+                 return h;
             }
         }
-        return h;
+        return 0;
     }
 }
