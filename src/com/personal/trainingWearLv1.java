@@ -17,21 +17,38 @@ public class trainingWearLv1 {
             5	[2, 4]	[1, 3, 5]	5
             5	[2, 4]	[3]	        4
             3	[3]	    [1]	        2
+            5   [1,4,2]   [3,5]     4
+            5   [1,4,3]   [4]       3
         *
         * */
-        int count = n - lost.length;
+        int answer = n - lost.length;
+
+        for (int i = 0; i < reserve.length; i++) {
+            for (int j = 0; j < lost.length; j++) {
+                if (reserve[i] == lost[j]) {
+                    reserve[i] = -5;
+                    lost[j] = -10;
+                    answer++;
+                    break;
+                }
+            }
+        }
+
         for (int i = 0; i < reserve.length; i++) {
             for (int j = 0; j < lost.length; j++) {
                 if (Math.abs(reserve[i] - lost[j]) >= 2) {
                     continue;
                 } else {
-                    count++;
+                    answer++;
+                    break;
                 }
+
             }
         }
-        if(count > n) count = n;
+        if (answer > n) answer = n;
 
+        return answer;
 
-        return count;
     }
 }
+
